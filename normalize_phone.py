@@ -16,16 +16,16 @@ def normalize_phone(phone_number):
     """
 
     # Remove odd symbols
-    number = re.sub(r'[^+0-9]', '', phone_number)
+    number = re.sub(r'[^0-9]', '', phone_number)
     # Parse number to parts
-    num_info_search = re.search(r'^(?P<plus_prefix>\+)?(?P<country_code>38)?(?P<operator_code>0\d{2})(?P<number>\d{7})$', number) if number else None
+    num_info_search = re.search(r'^(?P<plus_prefix>\+)?(?P<country_code>[1-9]\d{,2})?(?P<number>\d{10,})$', number) if number else None
     # Error if value is not in supported format
     if not num_info_search:
-        raise TypeError("Номер телефону повинен мати 10 або 12 цифр та може мати знак + на початку: +38 (097) 11-22-333, 38 (097_ 11-22-333, (097) 11-22-333.")
+        raise TypeError("Номер телефону повинен мати від 10-ти цифр та може мати знак + на початку: +38 (097) 11-22-333, 38 (097) 11-22-333, (097) 11-22-333.")
     # Get number parts
     num_info = num_info_search.groupdict()
     # Return normilized number
-    return f"+38{num_info.get('operator_code')}{num_info.get('number')}"
+    return f"+38{number}" if not num_info.get('country_code') else f"+{number}"
 
 if __name__ == "__main__":
     # phone_number = input(f"Введіть номер телефону: ")

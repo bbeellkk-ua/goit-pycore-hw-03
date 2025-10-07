@@ -21,6 +21,10 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
         Список унікальних відсортованих випадкових номерів.
     """
 
+    # Перевірка вхідних параметрів на коректність
+    if min < 1 or max > 1000 or quantity < min or quantity > max:
+        return []
+
     numbers = set()
 
     while len(numbers) < quantity:

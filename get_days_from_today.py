@@ -28,7 +28,7 @@ def get_days_from_today(date: str, today: str = "") -> int:
     td = datetime.today().date()
 
     # Calc diff from date to today
-    diff = dt - td
+    diff = td - dt
 
     # Return number of days in diff
     return diff.days

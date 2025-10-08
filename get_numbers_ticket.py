@@ -22,7 +22,7 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
     """
 
     # Перевірка вхідних параметрів на коректність
-    if min < 1 or max > 1000 or quantity < min or quantity > max:
+    if min < 1 or max > 1000 or quantity > (max - min):
         return []
 
     numbers = set()
